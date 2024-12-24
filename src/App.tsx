@@ -1,7 +1,14 @@
+import { Outlet } from "react-router";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+
 const App = () => {
   return (
-    <div>
-      <h1>This is App Component</h1>
+    <div className="bg-m-bg min-h-screen relative">
+      <div className="h-10"></div>
+      <Navbar />
+      <Outlet />
+      <Footer />
     </div>
   );
 };
