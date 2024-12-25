@@ -1,9 +1,20 @@
 import BContainer from "@/components/home/BContainer";
+import axiosInstance from "@/lib/axios";
+import { useQuery } from "@tanstack/react-query";
 import { MoveLeft } from "lucide-react";
 import { useNavigate } from "react-router";
 
+const fetchAllBlogs = async () => {
+  const result = await axiosInstance.get("/blogs  ");
+  return result?.data;
+};
+
 const Blogs = () => {
   const navigate = useNavigate();
+  const { data, isLoading } = useQuery({
+    queryKey: ["blogs"],
+    queryFn: fetchAllBlogs,
+  });
   return (
     <div>
       <div className="container space-y-2">
@@ -18,7 +29,7 @@ const Blogs = () => {
         </button>
         <h1 className="text-white/80 text-3xl md:text-5xl font-semibold">All Blogs</h1>
       </div>
-      <BContainer disabledTitle />
+      <BContainer blogs={data?.data} isLoading={isLoading} disabledTitle />
     </div>
   );
 };

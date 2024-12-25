@@ -2,8 +2,18 @@ import { MoveRight } from "lucide-react";
 import BCard from "../Card/BCard";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import { TBlog } from "@/types";
+import BSkeleton from "../skeletons/BSkeleton";
 
-const BContainer = ({ disabledTitle }: { disabledTitle?: boolean }) => {
+const BContainer = ({
+  disabledTitle = false,
+  blogs,
+  isLoading,
+}: {
+  disabledTitle?: boolean;
+  blogs: TBlog[];
+  isLoading: boolean;
+}) => {
   const navigate = useNavigate();
 
   // Animation variants for the cards
@@ -32,17 +42,29 @@ const BContainer = ({ disabledTitle }: { disabledTitle?: boolean }) => {
       ) : null}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
         {/* Map over the BCard components with animation */}
-        {[...Array(3)].map((_, index) => (
-          <motion.div
-            key={index}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-          >
-            <BCard /> {/* The BCard component */}
-          </motion.div>
-        ))}
+        {isLoading
+          ? [...Array(3)].map((_, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+              >
+                <BSkeleton /> {/* The BCard component */}
+              </motion.div>
+            ))
+          : blogs?.map((blog) => (
+              <motion.div
+                key={blog?._id}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+              >
+                <BCard blog={blog} /> {/* The BCard component */}
+              </motion.div>
+            ))}
       </div>
     </div>
   );

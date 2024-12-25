@@ -6,14 +6,24 @@ import PContainer from "@/components/home/PContainer";
 import TechStack from "@/components/home/TechStack";
 import Navbar from "@/components/Navbar";
 import axiosInstance from "@/lib/axios";
-import { TProject } from "@/types";
+import { TBlog, TProject } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchAllProjects = async () => {
   const params = new URLSearchParams();
   params.append("limit", "3");
   params.append("page", "1");
+  params.append("sort", "title");
   const result = await axiosInstance.get("/projects", { params });
+  return result?.data;
+};
+
+const fetchAllBlogs = async () => {
+  const params = new URLSearchParams();
+  params.append("limit", "3");
+  params.append("page", "1");
+  params.append("sort", "title");
+  const result = await axiosInstance.get("/blogs", { params });
   return result?.data;
 };
 
@@ -21,6 +31,10 @@ const Home = () => {
   const { data: projectData, isLoading: projectLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: fetchAllProjects,
+  });
+  const { data: blogData, isLoading: blogLoading } = useQuery({
+    queryKey: ["blogs"],
+    queryFn: fetchAllBlogs,
   });
 
   return (
@@ -40,7 +54,7 @@ const Home = () => {
           <TechStack />
         </div>
         <div id="blogs">
-          <BContainer />
+          <BContainer blogs={blogData?.data as TBlog[]} isLoading={blogLoading} />
         </div>
         <div id="contact">
           <Contact />

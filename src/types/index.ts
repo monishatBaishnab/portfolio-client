@@ -41,3 +41,15 @@ export type TExperience = {
   updatedAt: string;
   __v: number;
 };
+
+export interface TBlog {
+  _id: string
+  title: string
+  description: string
+  content: string
+  image: string
+  skills: TSkill[]
+  createdAt: string
+  updatedAt: string
+  __v: number
+}

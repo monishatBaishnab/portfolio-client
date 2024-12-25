@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import PDSkeleton from "@/components/skeletons/PDSkeleton";
 import { TSkill } from "@/types";
 
-const fetchSingleProjects = async (id: string) => {
+const fetchSingleProject = async (id: string) => {
   const result = await axiosInstance.get(`/projects/${id}`);
   return result?.data;
 };
@@ -16,7 +16,7 @@ const ProjectDetails = () => {
   const { id } = useParams();
   const { data, isLoading } = useQuery({
     queryKey: ["projects", id],
-    queryFn: () => fetchSingleProjects(id as string),
+    queryFn: () => fetchSingleProject(id as string),
     enabled: !!id,
   });
   const project = data?.data;
