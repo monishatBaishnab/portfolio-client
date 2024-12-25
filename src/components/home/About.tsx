@@ -1,9 +1,23 @@
 import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { cn } from "@/lib/utils";
+import axiosInstance from "@/lib/axios";
+import { useQuery } from "@tanstack/react-query";
+import ESkeleton from "../skeletons/ESkeleton";
+import ECard from "../Card/ECard";
+import { TExperience } from "@/types";
+
+const fetchAllExperience = async () => {
+  const result = await axiosInstance.get("/experiences");
+  return result?.data;
+};
 
 const About = () => {
   const controls = useAnimation();
+  const { data, isLoading } = useQuery({
+    queryKey: ["experiences"],
+    queryFn: fetchAllExperience,
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -69,7 +83,7 @@ const About = () => {
           </p>
         </motion.div>
 
-       <div className="space-y-5">
+        <div className="space-y-5">
           {/* Education */}
           <motion.div
             className="text-white/60 space-y-3"
@@ -90,14 +104,14 @@ const About = () => {
                   <h4 className="text-xl font-semibold text-white/80">Diploma in Engineering</h4>
                   <span className="uppercase text-sm">2019 - 2023</span>
                 </div>
-                <h5 className="font-medium text-white/70">Suranjit Sengupta Polytechnic Institute</h5>
+                <h5 className="font-medium text-white/70">
+                  Suranjit Sengupta Polytechnic Institute
+                </h5>
               </div>
-              <p>
-               CGPA: 3.84
-              </p>
+              <p>CGPA: 3.84</p>
             </div>
           </motion.div>
-  
+
           {/* Experience */}
           <motion.div
             className="text-white/60 space-y-3"
@@ -106,34 +120,15 @@ const About = () => {
             variants={variants}
           >
             <h5 className="text-white/70 font-medium">Professional Experience</h5>
-            <div
-              className={cn(
-                "space-y-3 p-5 transition-all",
-                "bg-slate-800/20 border border-slate-800/60",
-                "hover:bg-slate-800/30"
-              )}
-            >
-              <div>
-                <div className="flex justify-between flex-wrap sm:flex-nowrap">
-                  <h4 className="text-xl font-semibold text-white/80">Frontend Developer</h4>
-                  <span className="uppercase text-sm">2024 - present</span>
-                </div>
-                <h5 className="font-medium text-white/70">Learner LMS</h5>
-              </div>
-              <p>
-                As the sole frontend developer at a startup focused on LMS products, I am responsible
-                for building an LMS from scratch. I've designed and developed all user interfaces,
-                including complex form handling. I also manage the integration of APIs with the
-                frontend to ensure seamless functionality.
-              </p>
-              <div className="flex items-center gap-2 flex-wrap">
-                <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">Javascript</button>
-                <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">React</button>
-                <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">REST API</button>
-              </div>
-            </div>
+            {isLoading ? (
+              <ESkeleton />
+            ) : (
+              data?.data?.map((experience: TExperience) => (
+                <ECard key={experience._id} experience={experience} />
+              ))
+            )}
           </motion.div>
-       </div>
+        </div>
       </div>
     </motion.div>
   );

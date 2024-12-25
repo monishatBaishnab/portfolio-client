@@ -5,8 +5,24 @@ import Header from "@/components/home/Header";
 import PContainer from "@/components/home/PContainer";
 import TechStack from "@/components/home/TechStack";
 import Navbar from "@/components/Navbar";
+import axiosInstance from "@/lib/axios";
+import { TProject } from "@/types";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchAllProjects = async () => {
+  const params = new URLSearchParams();
+  params.append("limit", "3");
+  params.append("page", "1");
+  const result = await axiosInstance.get("/projects", { params });
+  return result?.data;
+};
 
 const Home = () => {
+  const { data: projectData, isLoading: projectLoading } = useQuery({
+    queryKey: ["projects"],
+    queryFn: fetchAllProjects,
+  });
+
   return (
     <div>
       <div>
@@ -17,10 +33,18 @@ const Home = () => {
         </div>
         <Header />
         <About />
-        <div id="projects"><PContainer /></div>
-        <div id="skills"><TechStack /></div>
-        <div id="blogs"><BContainer /></div>
-        <div id="contact"><Contact /></div>
+        <div id="projects">
+          <PContainer projects={projectData?.data as TProject[]} isLoading={projectLoading} />
+        </div>
+        <div id="skills">
+          <TechStack />
+        </div>
+        <div id="blogs">
+          <BContainer />
+        </div>
+        <div id="contact">
+          <Contact />
+        </div>
       </div>
     </div>
   );

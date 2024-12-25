@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
+import { TSkill } from "@/types";
 
-const SCard = () => {
+const SCard = ({skill}:{skill:TSkill}) => {
   return (
     <div
       className={cn(
@@ -13,14 +14,14 @@ const SCard = () => {
       <div className="size-14 overflow-hidden rounded-lg">
         <img
           className="size-full object-contain"
-          src="https://monishat-portfolio.web.app/assets/react.b7bf6c65-1h8K5xRc.png"
-          alt=""
+          src={skill.image}
+          alt={skill.name}
         />
       </div>
-      <div className="flex justify-between grow">
-        <h4 className="text-2xl font-semibold text-white/80">Figma</h4>
-        <span className="text-white/60 bg-slate-800/40 px-3 pt-1 rounded-full border border-slate-800/80">
-          Design
+      <div className="space-y-2">
+        <h4 className="ml-1 text-lg font-semibold text-white/80">{skill.name}</h4>
+        <span className="block text-white/60 bg-slate-800/40 px-3 text-xs py-1 rounded-full border border-slate-800/80">
+          {skill.tagline}
         </span>
       </div>
     </div>

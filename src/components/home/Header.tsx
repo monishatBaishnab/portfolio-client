@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import monishat from "../../assets/images/moni.png";
+import monishat from "../../assets/images/moni_.png";
 import { FileDown } from "lucide-react";
 
 const Header = () => {

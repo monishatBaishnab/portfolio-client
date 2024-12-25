@@ -2,8 +2,9 @@ import { cn } from "@/lib/utils";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { Github, Link2 } from "lucide-react";
 import { useNavigate } from "react-router";
+import { TProject } from "@/types";
 
-const PCard = () => {
+const PCard = ({ project }: { project: TProject }) => {
   const navigate = useNavigate();
   return (
     <div
@@ -15,82 +16,62 @@ const PCard = () => {
       )}
     >
       <div className="h-52 w-80 overflow-hidden sm:shrink-0">
-        <img
-          className="w-full h-full object-cover"
-          src="https://i.ibb.co/stfsY68/23126584-202.jpg"
-          alt=""
-        />
+        <img className="w-full h-full object-contain" src={project?.image} alt={project?.title} />
       </div>
       <div className="grow space-y-2 text-white/60">
         <span className="text-sm">FULLSTACK</span>
         <div className="flex items-center justify-between flex-wrap sm:flex-nowrap gap-2">
           <h2
-            onClick={() => navigate("/projects/12")}
+            onClick={() => navigate(`/projects/${project._id}`)}
             className="text-2xl cursor-pointer font-semibold text-white/80"
           >
-            Frontend Developer
+            {project?.title}
           </h2>
           <div className="flex items-center gap-3">
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger>
-                  <button className="text-white/60 hover:text-white/80 transition-all">
-                    <Github className="size-5" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent
-                  align="end"
-                  side="top"
-                  className="text-sm bg-m-bg-light/5 border-m-t-light/5 text-white"
-                >
-                  <p>Server Repository</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <div className="h-5 w-0.5 bg-white/15"></div>
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger>
-                  <button className="text-white/60 hover:text-white/80 transition-all">
-                    <Github className="size-5" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent
-                  align="end"
-                  side="top"
-                  className="text-sm bg-m-bg-light/5 border-m-t-light/5 text-white"
-                >
-                  <p>Client Repository</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <div className="h-5 w-0.5 bg-white/15"></div>
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger>
-                  <button className="text-white/60 hover:text-white/80 transition-all">
-                    <Link2 className="size-5" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent
-                  align="end"
-                  side="top"
-                  className="text-sm bg-m-bg-light/5 border-m-t-light/5 text-white"
-                >
-                  <p>Go To Live</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            {Object.keys(project?.links)?.map((key) => {
+              return (
+                <>
+                  <div className="h-5 w-0.5 bg-white/15 first:hidden"></div>
+                  <TooltipProvider delayDuration={100}>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <a
+                          href={project?.links?.[key as "client" | "server" | "live"]}
+                          target="_blank"
+                          className="text-white/60 hover:text-white/80 transition-all"
+                        >
+                          {key === "live" ? <Link2 className="size-5" /> : <Github className="size-5" />}
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent
+                        align="end"
+                        side="top"
+                        className="text-sm bg-m-bg-light/5 border-m-t-light/5 text-white"
+                      >
+                        {key === "live" ? (
+                          <p>Go to Live</p>
+                        ) : (
+                          <p>{key.slice(0, 1).toUpperCase() + key.slice(1)} Code</p>
+                        )}
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </>
+              );
+            })}
           </div>
         </div>
         <p>
-          As the sole frontend developer at a startup focused on LMS products, I am responsible for
-          building an LMS from scratch. I've designed and developed all user interfaces,
+          {project?.description?.length > 200
+            ? project?.description?.slice(0, 200)
+            : project.description}
         </p>
         <div className="flex items-center gap-2 flex-wrap !mt-5">
-          <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">Javascript</button>
-          <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">React</button>
-          <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">REST API</button>
+          {project?.skills?.map((skill) => (
+            <button key={skill?._id} className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">
+              {skill?.name}
+            </button>
+          ))}
         </div>
       </div>
     </div>

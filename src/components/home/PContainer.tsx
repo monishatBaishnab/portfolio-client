@@ -2,8 +2,18 @@ import { MoveRight } from "lucide-react";
 import PCard from "../Card/PCard";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import { TProject } from "@/types";
+import PSkeleton from "../skeletons/PSkeleton";
 
-const PContainer = ({ disabledTitle = false }: { disabledTitle?: boolean }) => {
+const PContainer = ({
+  disabledTitle = false,
+  projects,
+  isLoading,
+}: {
+  disabledTitle?: boolean;
+  projects: TProject[];
+  isLoading: boolean;
+}) => {
   const navigate = useNavigate();
 
   // Animation variants for staggered reveal of each PCard
@@ -45,17 +55,29 @@ const PContainer = ({ disabledTitle = false }: { disabledTitle?: boolean }) => {
       ) : null}
 
       <motion.div className="space-y-5">
-        {Array.from({ length: 3 }).map((_, id) => (
-          <motion.div
-            key={id}
-            variants={cardVariants}
-            whileInView="visible"
-            initial="hidden"
-            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-          >
-            <PCard />
-          </motion.div>
-        ))}
+        {isLoading
+          ? Array.from({ length: 3 }).map((_, id) => (
+              <motion.div
+                key={id}
+                variants={cardVariants}
+                whileInView="visible"
+                initial="hidden"
+                viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+              >
+                <PSkeleton />
+              </motion.div>
+            ))
+          : projects?.map((project) => (
+              <motion.div
+                key={project._id}
+                variants={cardVariants}
+                whileInView="visible"
+                initial="hidden"
+                viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+              >
+                <PCard project={project} />
+              </motion.div>
+            ))}
       </motion.div>
     </motion.div>
   );

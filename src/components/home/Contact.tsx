@@ -22,7 +22,7 @@ const Contact = () => {
         viewport={{ once: true, margin: "0px 0px -100px 0px" }}
         className="bg-slate-800/30 space-y-3 p-5 md:p-10 border border-slate-800/50 rounded-lg w-full"
       >
-        <h5 className="text-white/70 font-medium text-center">New Message</h5>
+        <h5 className="text-white/70 font-medium">Create New Message</h5>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3">
           <div className="text-white/60 flex items-center gap-2 border-b border-b-slate-800/80">
             <label htmlFor="name" className="shrink-0">

@@ -1,9 +1,19 @@
 import PContainer from "@/components/home/PContainer";
+import axiosInstance from "@/lib/axios";
+import { useQuery } from "@tanstack/react-query";
 import { MoveLeft } from "lucide-react";
 import { useNavigate } from "react-router";
 
+const fetchAllProjects = async () => {
+  const result = await axiosInstance.get("/projects");
+  return result?.data;
+};
 const Projects = () => {
   const navigate = useNavigate();
+  const { data, isLoading } = useQuery({
+    queryKey: ["projects"],
+    queryFn: fetchAllProjects,
+  });
   return (
     <div>
       <div className="container space-y-2">
@@ -18,7 +28,7 @@ const Projects = () => {
         </button>
         <h1 className="text-white/80 text-3xl md:text-5xl font-semibold">All Projects</h1>
       </div>
-      <PContainer disabledTitle />
+      <PContainer isLoading={isLoading} projects={data?.data} disabledTitle />
     </div>
   );
 };
