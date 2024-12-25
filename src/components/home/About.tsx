@@ -1,18 +1,60 @@
+import { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const About = () => {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          controls.start("visible");
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    const section = document.getElementById("about");
+    if (section) observer.observe(section);
+
+    return () => {
+      if (section) observer.unobserve(section);
+    };
+  }, [controls]);
+
+  const variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div className="container space-y-8">
+    <motion.div
+      id="about"
+      className="container space-y-8"
+      initial="hidden"
+      animate={controls}
+      variants={variants}
+    >
       <h1 className="text-white/80 text-2xl font-semibold">About & Experience</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* About Me */}
-        <div className="text-white/60 space-y-3">
+        <motion.div
+          className="text-white/60 space-y-3"
+          initial="hidden"
+          animate={controls}
+          variants={variants}
+        >
           <h5 className="text-white/70 font-medium">Who I Am?</h5>
           <p className="text-white/60">
-            I'm Monishat Baishnab from Sylhet-Bangladesh, a full-stack developer passionate about creating accessible,
-            pixel-perfect user interfaces. I specialize in blending thoughtful design with solid
-            engineering, ensuring that the experiences I build are not only visually stunning but
-            also functional and user-friendly.
+            I'm Monishat Baishnab from Sylhet-Bangladesh, a full-stack developer passionate about
+            creating accessible, pixel-perfect user interfaces. I specialize in blending thoughtful
+            design with solid engineering, ensuring that the experiences I build are not only visually
+            stunning but also functional and user-friendly.
           </p>
           <p className="text-white/60">
             I worked on personal projects to improve my skills. I stay updated with new technologies
@@ -23,10 +65,15 @@ const About = () => {
           <p className="text-white/60">
             In my free time, I enjoy cycling, traveling, and spending quality time with my family.
           </p>
-        </div>
+        </motion.div>
 
         {/* Experience */}
-        <div className="text-white/60 space-y-3">
+        <motion.div
+          className="text-white/60 space-y-3"
+          initial="hidden"
+          animate={controls}
+          variants={variants}
+        >
           <h5 className="text-white/70 font-medium">Professional Experience</h5>
           <div
             className={cn(
@@ -54,9 +101,9 @@ const About = () => {
               <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">REST API</button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

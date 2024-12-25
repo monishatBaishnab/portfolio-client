@@ -1,10 +1,27 @@
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
+
 const Contact = () => {
+  // Animation variants for fade-in effect
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, ease: "easeOut" },
+    },
+  };
+
   return (
     <div className="container space-y-8">
       <h1 className="text-white/80 text-2xl font-semibold">Get in Touch</h1>
-      <div className="bg-slate-800/30 space-y-3 p-5 md:p-10 border border-slate-800/50 rounded-lg w-full">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+        className="bg-slate-800/30 space-y-3 p-5 md:p-10 border border-slate-800/50 rounded-lg w-full"
+      >
         <h5 className="text-white/70 font-medium text-center">New Message</h5>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3">
           <div className="text-white/60 flex items-center gap-2 border-b border-b-slate-800/80">
@@ -56,7 +73,7 @@ const Contact = () => {
           <Send className="size-4" />
           Send me
         </motion.button>
-      </div>
+      </motion.div>
     </div>
   );
 };
