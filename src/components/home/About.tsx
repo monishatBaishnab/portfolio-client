@@ -53,8 +53,8 @@ const About = () => {
           <p className="text-white/60">
             I'm Monishat Baishnab from Sylhet-Bangladesh, a full-stack developer passionate about
             creating accessible, pixel-perfect user interfaces. I specialize in blending thoughtful
-            design with solid engineering, ensuring that the experiences I build are not only visually
-            stunning but also functional and user-friendly.
+            design with solid engineering, ensuring that the experiences I build are not only
+            visually stunning but also functional and user-friendly.
           </p>
           <p className="text-white/60">
             I worked on personal projects to improve my skills. I stay updated with new technologies
@@ -63,45 +63,77 @@ const About = () => {
             as the payment method.
           </p>
           <p className="text-white/60">
-            In my free time, I enjoy cycling, traveling, and spending quality time with my family.
+            I completed my Diploma in Engineering in Computer Technology in 2023, achieving a CGPA
+            of 3.84. In my free time, I enjoy cycling, traveling, and spending quality time with my
+            family.
           </p>
         </motion.div>
 
-        {/* Experience */}
-        <motion.div
-          className="text-white/60 space-y-3"
-          initial="hidden"
-          animate={controls}
-          variants={variants}
-        >
-          <h5 className="text-white/70 font-medium">Professional Experience</h5>
-          <div
-            className={cn(
-              "space-y-3 p-5 transition-all",
-              "bg-slate-800/20 border border-slate-800/60",
-              "hover:bg-slate-800/30"
-            )}
+       <div className="space-y-5">
+          {/* Education */}
+          <motion.div
+            className="text-white/60 space-y-3"
+            initial="hidden"
+            animate={controls}
+            variants={variants}
           >
-            <div>
-              <div className="flex justify-between">
-                <h4 className="text-xl font-semibold text-white/80">Frontend Developer</h4>
-                <span className="uppercase text-sm">2024 - present</span>
+            <h5 className="text-white/70 font-medium">Education</h5>
+            <div
+              className={cn(
+                "space-y-3 p-5 transition-all",
+                "bg-slate-800/20 border border-slate-800/60",
+                "hover:bg-slate-800/30"
+              )}
+            >
+              <div>
+                <div className="flex justify-between flex-wrap sm:flex-nowrap">
+                  <h4 className="text-xl font-semibold text-white/80">Diploma in Engineering</h4>
+                  <span className="uppercase text-sm">2019 - 2023</span>
+                </div>
+                <h5 className="font-medium text-white/70">Suranjit Sengupta Polytechnic Institute</h5>
               </div>
-              <h5 className="font-medium text-white/70">Learner LMS</h5>
+              <p>
+               CGPA: 3.84
+              </p>
             </div>
-            <p>
-              As the sole frontend developer at a startup focused on LMS products, I am responsible
-              for building an LMS from scratch. I've designed and developed all user interfaces,
-              including complex form handling. I also manage the integration of APIs with the
-              frontend to ensure seamless functionality.
-            </p>
-            <div className="flex items-center gap-2 flex-wrap">
-              <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">Javascript</button>
-              <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">React</button>
-              <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">REST API</button>
+          </motion.div>
+  
+          {/* Experience */}
+          <motion.div
+            className="text-white/60 space-y-3"
+            initial="hidden"
+            animate={controls}
+            variants={variants}
+          >
+            <h5 className="text-white/70 font-medium">Professional Experience</h5>
+            <div
+              className={cn(
+                "space-y-3 p-5 transition-all",
+                "bg-slate-800/20 border border-slate-800/60",
+                "hover:bg-slate-800/30"
+              )}
+            >
+              <div>
+                <div className="flex justify-between flex-wrap sm:flex-nowrap">
+                  <h4 className="text-xl font-semibold text-white/80">Frontend Developer</h4>
+                  <span className="uppercase text-sm">2024 - present</span>
+                </div>
+                <h5 className="font-medium text-white/70">Learner LMS</h5>
+              </div>
+              <p>
+                As the sole frontend developer at a startup focused on LMS products, I am responsible
+                for building an LMS from scratch. I've designed and developed all user interfaces,
+                including complex form handling. I also manage the integration of APIs with the
+                frontend to ensure seamless functionality.
+              </p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">Javascript</button>
+                <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">React</button>
+                <button className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">REST API</button>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+       </div>
       </div>
     </motion.div>
   );
