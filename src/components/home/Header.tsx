@@ -29,7 +29,7 @@ const Header = () => {
   };
 
   return (
-    <div id="home" className="relative h-[600px] w-full overflow-hidden">
+    <div id="home" className="relative min-h-[600px] w-full overflow-hidden">
       <div className="container py-10 grid grid-cols-1 gap-5 items-center md:grid-cols-2">
         {/* Left Content */}
         <motion.div
@@ -48,13 +48,15 @@ const Header = () => {
             <br className="hidden sm:inline-block" /> pixel-perfect digital experiences for the web.
           </p>
 
-          <motion.button
+          <motion.a
+            href="https://drive.google.com/uc?export=download&id=1ByR_P19IWOf2h3-0h4FMB3Ie6hFqJ6PP"
+            download="monishat-baishnab-resume"
             {...buttonHoverAnimation}
-            className="px-6 py-2 border-2 flex items-center gap-2 rounded-md transition-[background] bg-m-bg-light/10 border-m-bg-light/5 text-white/60"
+            className="px-6 py-2 border-2 flex w-36 justify-center items-center gap-2 rounded-md transition-[background] bg-m-bg-light/10 border-m-bg-light/5 text-white/60"
           >
             <FileDown className="size-4" />
             Resume
-          </motion.button>
+          </motion.a>
         </motion.div>
 
         {/* Right Content */}
