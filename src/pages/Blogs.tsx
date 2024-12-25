@@ -1,7 +1,8 @@
+import BContainer from "@/components/home/BContainer";
 import { MoveLeft } from "lucide-react";
 import { useNavigate } from "react-router";
 
-const ProjectDetails = () => {
+const Blogs = () => {
   const navigate = useNavigate();
   return (
     <div>
@@ -15,10 +16,11 @@ const ProjectDetails = () => {
           </div>
           Go to Home
         </button>
-        <h1 className="text-white/80 text-3xl md:text-5xl font-semibold">Project Details</h1>
+        <h1 className="text-white/80 text-3xl md:text-5xl font-semibold">All Blogs</h1>
       </div>
+      <BContainer disabledTitle />
     </div>
   );
 };
 
-export default ProjectDetails;
+export default Blogs;

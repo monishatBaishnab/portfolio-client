@@ -68,6 +68,6 @@
 }
 @layer utilities {
   .container {
-    @apply max-w-screen-xl mx-auto px-5 md:px-10 py-10 md:py-20;
+    @apply max-w-screen-xl mx-auto px-5 md:px-10 py-10;
   }
 }

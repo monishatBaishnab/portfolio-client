@@ -9,7 +9,7 @@ const About = () => {
         <div className="text-white/60 space-y-3">
           <h5 className="text-white/70 font-medium">Who I Am?</h5>
           <p className="text-white/60">
-            I'm Monishat Baishnab, a full-stack developer passionate about creating accessible,
+            I'm Monishat Baishnab from Sylhet-Bangladesh, a full-stack developer passionate about creating accessible,
             pixel-perfect user interfaces. I specialize in blending thoughtful design with solid
             engineering, ensuring that the experiences I build are not only visually stunning but
             also functional and user-friendly.
@@ -31,8 +31,8 @@ const About = () => {
           <div
             className={cn(
               "space-y-3 p-5 transition-all",
-              "bg-[rgba(29,_78,_216,_0.02)] border border-[rgba(29,_78,_216,_0.05)]",
-              "hover:bg-[rgba(29,_78,_216,_0.04)]"
+              "bg-slate-800/20 border border-slate-800/60",
+              "hover:bg-slate-800/30"
             )}
           >
             <div>
