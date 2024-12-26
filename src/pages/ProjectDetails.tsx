@@ -45,16 +45,16 @@ const ProjectDetails = () => {
       </div>
 
       {/* Details */}
-      <div className="container grid gap-5 grid-cols-1 md:grid-cols-2">
+      <div className="container space-y-7">
         <div>
-          <div className="h-60 sm:h-96 w-full p-5 border border-slate-800/50 rounded-md overflow-hidden sm:shrink-0">
+          <div className="h-60 sm:h-[500px] w-full p-5 border border-slate-800/50 rounded-md overflow-hidden sm:shrink-0">
             <img className="w-full h-full object-cover" src={project?.image} alt={project?.title} />
           </div>
         </div>
-        <div className="grow space-y-2 text-white/60">
+        <div className="space-y-2 text-white/60">
           <span className="text-sm">FULLSTACK</span>
           <h2 className="text-2xl font-semibold text-white/80">{project?.title}</h2>
-          <p>{project?.description}</p>
+          <div className="tiptap" dangerouslySetInnerHTML={{ __html: project?.overview }} />
           <div className="flex items-center gap-2 flex-wrap !mt-5">
             {project?.skills?.map((skill: TSkill) => (
               <button key={skill?._id} className="px-3 py-1 rounded-full bg-m-bg-light/5 text-sm">

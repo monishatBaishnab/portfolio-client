@@ -19,7 +19,7 @@ const PDSkeleton = () => {
       </div>
 
       {/* Details Skeleton */}
-      <div className="container grid gap-5 grid-cols-1 md:grid-cols-2">
+      <div className="container sm:h-[500px] space-y-7">
         <div>
           <div className="h-60 sm:h-96 w-full p-5 border border-slate-800/50 rounded-md overflow-hidden sm:shrink-0 bg-slate-700 animate-pulse"></div>
         </div>
