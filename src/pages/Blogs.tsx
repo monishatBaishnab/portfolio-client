@@ -27,7 +27,7 @@ const Blogs = () => {
           </div>
           Go to Home
         </button>
-        <h1 className="text-white/80 text-3xl md:text-5xl font-semibold">All Blogs</h1>
+        <h1 className="text-white text-3xl md:text-5xl font-semibold">All Blogs</h1>
       </div>
       <BContainer blogs={data?.data} isLoading={isLoading} disabledTitle />
     </div>

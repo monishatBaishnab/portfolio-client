@@ -30,10 +30,11 @@ const ProjectDetails = () => {
   if (!id || isLoading) {
     return <BDSkeleton />;
   }
-  console.log(blog);
+
   return (
     <div>
-      <div className="container space-y-2">
+      {/* Details */}
+      <div className="container space-y-7">
         <button
           onClick={() => navigate("/")}
           className="text-blue-600 relative group pl-6 font-medium flex items-center gap-2"
@@ -43,11 +44,6 @@ const ProjectDetails = () => {
           </div>
           Go to Home
         </button>
-        <h1 className="text-white/80 text-3xl md:text-5xl font-semibold">Blog Details</h1>
-      </div>
-
-      {/* Details */}
-      <div className="container space-y-7">
         <div>
           <div className="h-60 sm:h-[500px] w-full p-5 border border-slate-800/50 rounded-md overflow-hidden sm:shrink-0">
             <img className="w-full h-full object-cover" src={blog?.image} alt={blog?.title} />
@@ -56,15 +52,12 @@ const ProjectDetails = () => {
         <div className="grow space-y-2 text-white/60">
           <div className="flex items-center gap-2 flex-wrap !mt-5">
             {blog?.skills?.map((skill: TSkill) => (
-              <span
-                key={skill._id}
-                className="bg-slate-800/50 px-2 py-1 inline-block text-white/60 rounded-md text-sm"
-              >
+              <span key={skill._id} className="bg-slate-800/50 px-2 py-1 inline-block text-white/60 rounded-md text-sm">
                 {skill.name}
               </span>
             ))}
           </div>
-          <h2 className="text-2xl font-semibold text-white/80">{blog?.title}</h2>
+          <h2 className="text-2xl font-semibold text-white">{blog?.title}</h2>
           <div className="tiptap" dangerouslySetInnerHTML={{ __html: blog?.content }} />
 
           {/* User & Date */}

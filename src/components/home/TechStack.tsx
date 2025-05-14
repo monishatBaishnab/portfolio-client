@@ -25,7 +25,7 @@ const TechStack = () => {
 
   return (
     <div className="container space-y-8">
-      <h1 className="text-white/80 text-2xl font-semibold">Skills & Tools</h1>
+      <h1 className="text-white text-2xl font-semibold">Skills & Tools</h1>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {/* Map over the SCard components with animation */}
         {isLoading
@@ -42,7 +42,7 @@ const TechStack = () => {
                     "flex items-center gap-3",
                     "p-3 pr-5 transition-all rounded-lg",
                     "bg-slate-800/20 border border-slate-800/60",
-                    "hover:bg-slate-800/30"
+                    "hover:bg-slate-800/30",
                   )}
                 >
                   <div className="size-14 overflow-hidden rounded-lg bg-slate-700 animate-pulse"></div>

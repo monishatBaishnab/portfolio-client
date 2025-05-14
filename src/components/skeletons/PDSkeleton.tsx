@@ -15,7 +15,7 @@ const PDSkeleton = () => {
           </div>
           Go to Home
         </button>
-        <h1 className="text-white/80 text-3xl md:text-5xl font-semibold">Project Details</h1>
+        <h1 className="text-white text-3xl md:text-5xl font-semibold">Project Details</h1>
       </div>
 
       {/* Details Skeleton */}

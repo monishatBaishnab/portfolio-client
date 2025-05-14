@@ -31,7 +31,8 @@ const ProjectDetails = () => {
   };
   return (
     <div>
-      <div className="container space-y-2">
+      {/* Details */}
+      <div className="container space-y-7">
         <button
           onClick={() => navigate("/")}
           className="text-blue-600 relative group pl-6 font-medium flex items-center gap-2"
@@ -41,11 +42,6 @@ const ProjectDetails = () => {
           </div>
           Go to Home
         </button>
-        <h1 className="text-white/80 text-3xl md:text-5xl font-semibold">Project Details</h1>
-      </div>
-
-      {/* Details */}
-      <div className="container space-y-7">
         <div>
           <div className="h-60 sm:h-[500px] w-full p-5 border border-slate-800/50 rounded-md overflow-hidden sm:shrink-0">
             <img className="w-full h-full object-cover" src={project?.image} alt={project?.title} />
@@ -53,7 +49,7 @@ const ProjectDetails = () => {
         </div>
         <div className="space-y-2 text-white/60">
           <span className="text-sm">FULLSTACK</span>
-          <h2 className="text-2xl font-semibold text-white/80">{project?.title}</h2>
+          <h2 className="text-2xl font-semibold text-white">{project?.title}</h2>
           <div className="tiptap" dangerouslySetInnerHTML={{ __html: project?.overview }} />
           <div className="flex items-center gap-2 flex-wrap !mt-5">
             {project?.skills?.map((skill: TSkill) => (
@@ -71,11 +67,7 @@ const ProjectDetails = () => {
                     className="px-6 py-2 border-2 flex items-center gap-2 rounded-md transition-[background] bg-m-bg-light/10 border-m-bg-light/5 text-white/60"
                   >
                     {key === "live" ? <Link2 className="size-5" /> : <Github className="size-5" />}
-                    {key === "live" ? (
-                      <p>Go to Live</p>
-                    ) : (
-                      <p>{key.slice(0, 1).toUpperCase() + key.slice(1)} Code</p>
-                    )}
+                    {key === "live" ? <p>Go to Live</p> : <p>{key.slice(0, 1).toUpperCase() + key.slice(1)} Code</p>}
                   </motion.button>
                 </a>
               );

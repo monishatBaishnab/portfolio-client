@@ -15,7 +15,7 @@ const BDSkeleton = () => {
           </div>
           Go to Home
         </button>
-        <h1 className="text-white/80 text-3xl md:text-5xl font-semibold">Blog Details</h1>
+        <h1 className="text-white text-3xl md:text-5xl font-semibold">Blog Details</h1>
       </div>
 
       {/* Details */}
@@ -28,10 +28,7 @@ const BDSkeleton = () => {
             {Array(3)
               .fill(0)
               .map((_, index) => (
-                <span
-                  key={index}
-                  className="h-6 w-16 bg-slate-700/50 rounded-md animate-pulse"
-                ></span>
+                <span key={index} className="h-6 w-16 bg-slate-700/50 rounded-md animate-pulse"></span>
               ))}
           </div>
           <h2 className="h-6 w-40 bg-slate-700/50 rounded-md animate-pulse"></h2>

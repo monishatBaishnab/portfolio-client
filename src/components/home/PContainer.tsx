@@ -35,18 +35,13 @@ const PContainer = ({
   };
 
   return (
-    <motion.div
-      className="container space-y-8"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
+    <motion.div className="container space-y-8" initial="hidden" animate="visible" variants={containerVariants}>
       {!disabledTitle ? (
         <div className="flex items-center justify-between">
-          <h1 className="text-white/80 text-2xl font-semibold">Latest Projects</h1>
+          <h1 className="text-white text-2xl font-semibold">Latest Projects</h1>
           <button
             onClick={() => navigate("/projects")}
-            className="flex items-center text-white/60 hover:text-white/80 transition-all gap-2 text-sm"
+            className="flex items-center text-white/60 hover:text-white transition-all gap-2 text-sm"
           >
             Show all
             <MoveRight className="size-5" />

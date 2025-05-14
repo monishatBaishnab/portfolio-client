@@ -40,17 +40,17 @@ const Header = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <div className="space-y-2">
-            <h2 className="text-3xl sm:text-5xl text-white/80 font-semibold">Monishat Baishnab</h2>
-            <h4 className="text-xl text-white/70 font-medium">Frontend Developer</h4>
+            <h2 className="text-3xl sm:text-5xl text-white font-semibold">Monishat Baishnab</h2>
+            <h4 className="text-xl text-white/70 font-medium">Full-Stack Developer</h4>
           </div>
           <p className="text-white/60">
-            A full-stack developer passionate about creating accessible,{" "}
-            <br className="hidden sm:inline-block" /> pixel-perfect digital experiences for the web.
+            A full-stack developer passionate about creating accessible, <br className="hidden sm:inline-block" />{" "}
+            pixel-perfect digital experiences for the web.
           </p>
 
           <motion.a
-            href="https://drive.google.com/uc?export=download&id=1ByR_P19IWOf2h3-0h4FMB3Ie6hFqJ6PP"
-            download="monishat-baishnab-resume"
+            href="https://drive.google.com/uc?export=download&id=1Sd6SPfHb0_P3RUroWm0ScvdVXtaIvVGZ"
+            download="Monishat Baishnab_Fullstack Developer"
             {...buttonHoverAnimation}
             className="px-6 py-2 border-2 flex w-36 justify-center items-center gap-2 rounded-md transition-[background] bg-m-bg-light/10 border-m-bg-light/5 text-white/60"
           >

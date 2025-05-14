@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send, User } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone, PhoneCall, Send, User } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
 
@@ -10,14 +10,15 @@ const Contact = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 1, ease: "easeOut" },
+      transition: { duration: 0.8, ease: "easeOut" },
     },
   };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = new FormData(e.target as HTMLFormElement);
-    const name = form.get("name")?.toString().trim(); // Ensure it's treated as a string
+    const name = form.get("name")?.toString().trim();
     const email = form.get("email")?.toString().trim();
     const subject = form.get("subject")?.toString().trim();
     const messageInput = form.get("message")?.toString().trim();
@@ -32,96 +33,131 @@ const Contact = () => {
 
   return (
     <div className="container space-y-8">
-      <h1 className="text-white/80 text-2xl font-semibold">Get in Touch</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <form onSubmit={handleSubmit} className="md:col-span-2">
+      <h1 className="text-white text-2xl font-semibold">Get in Touch</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <form onSubmit={handleSubmit} className="space-y-4 md:col-span-2">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-            className="bg-slate-800/30 space-y-3 p-5 md:p-10 border border-slate-800/50 rounded-lg w-full"
+            className="bg-slate-800/30 p-6 border border-slate-800/50 rounded-lg"
           >
-            <h5 className="text-white/70 font-medium">Create New Message</h5>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3">
-              <div className="text-white/60 flex items-center gap-2 border-b border-b-slate-800/80">
-                <label htmlFor="name" className="shrink-0">
-                  Full Name :
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="w-full px-4 py-2 outline-none bg-transparent"
-                />
-              </div>
-              <div className="text-white/60 flex items-center gap-2 border-b border-b-slate-800/80">
-                <label htmlFor="email" className="shrink-0">
-                  Email :
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full px-4 py-2 outline-none bg-transparent"
-                />
-              </div>
-            </div>
-            <div className="text-white/60 flex items-center gap-2 border-b border-b-slate-800/80">
-              <label htmlFor="subject" className="shrink-0">
-                Subject :
-              </label>
+            <h5 className="text-white font-medium mb-4">Create New Message</h5>
+            <div className="flex flex-col gap-4">
               <input
+                autoComplete="off"
                 type="text"
-                id="subject"
+                name="name"
+                placeholder="Full Name"
+                className="px-4 py-2 bg-transparent text-white/60 border-b border-slate-800/80 outline-none"
+              />
+              <input
+                autoComplete="off"
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="px-4 py-2 bg-transparent text-white/60 border-b border-slate-800/80 outline-none"
+              />
+              <input
+                autoComplete="off"
+                type="text"
                 name="subject"
-                className="w-full px-4 py-2 outline-none bg-transparent"
+                placeholder="Subject"
+                className="px-4 py-2 bg-transparent text-white/60 border-b border-slate-800/80 outline-none"
+              />
+              <textarea
+                autoComplete="off"
+                name="message"
+                placeholder="Write your message..."
+                className="px-4 py-2 bg-transparent text-white/60 border-b border-slate-800/80 outline-none resize-none"
+                rows={5}
               />
             </div>
-            <textarea
-              rows={7}
-              placeholder="Write what you think about me."
-              id="message"
-              name="message"
-              className="w-full px-4 py-2 outline-none text-white/60 placeholder:text-white/40 bg-slate-800/40 rounded-lg resize-none"
-            />
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 1 }}
               type="submit"
-              className="px-6 py-2 border-2 flex items-center gap-2 rounded-md transition-[background] bg-slate-800/40 border-slate-800/50 text-white/60"
+              className="px-6 py-2 mt-4 border-2 flex items-center gap-2 rounded-md transition-[background] bg-slate-800/40 border-slate-800/50 text-white/60"
             >
               <Send className="size-4" />
-              Send me
+              Send Message
             </motion.button>
           </motion.div>
         </form>
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-          className="bg-slate-800/30 space-y-3 p-5 md:p-10 border border-slate-800/50 rounded-lg w-full"
         >
-          <h5 className="text-white/80 text-lg font-medium mb-4">Contact Info</h5>
-          <ul className="space-y-2">
-            <li className="space-y-1">
-              <User className="size-5 text-white/70" />
-              <span className="text-white/60 block">Monishat Baishnab</span>
-            </li>
-            <li className="space-y-1">
-              <Mail className="size-5 text-white/70" />
-              <span className="text-white/60 block">baishnabmonishat@gmail.com</span>
-            </li>
-            <li className="space-y-1">
-              <Phone className="size-5 text-white/70" />
-              <span className="text-white/60 block">+8801609927144</span>
-            </li>
-            <li className="space-y-1">
-              <MapPin className="size-5 text-white/70" />
-              <span className="text-white/60 block">Sylhet, Bangladesh</span>
-            </li>
-          </ul>
+          <div className="bg-slate-800/30 p-6 border border-slate-800/50 rounded-lg">
+            <h5 className="text-white text-lg font-medium mb-4">Contact Info</h5>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3">
+                <User className="size-5 text-white" />
+                <span className="text-white/60">Monishat Baishnab</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="size-5 text-white" />
+                <span className="text-white/60">baishnabmonishat@gmail.com</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="size-5 text-white" />
+                <span className="text-white/60">+8801609927144</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <MapPin className="size-5 text-white" />
+                <span className="text-white/60">Sylhet, Bangladesh</span>
+              </li>
+            </ul>
+          </div>
+          <div className="mt-5 space-y-2.5 bg-slate-800/30 p-6 rounded-xl border border-slate-800/50 shadow-sm">
+            <p className="text-white text-base font-semibold">Open to Freelance Work & Collaborations</p>
+            <p className="text-white/60 text-sm leading-relaxed">
+              I specialize in building responsive and performant web apps using{" "}
+              <span className="text-white font-medium">React</span>,{" "}
+              <span className="text-white font-medium">Next.js</span>,{" "}
+              <span className="text-white font-medium">TypeScript</span>,{" "}
+              <span className="text-white font-medium">Node.js</span>, and{" "}
+              <span className="text-white font-medium">MongoDB</span>.
+            </p>
+
+            <div className="flex items-center gap-2 pt-2 text-white">
+              <a
+                href="https://github.com/monishatBaishnab"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 border-2 rounded-md transition-[background] bg-slate-800/40 border-slate-800/50"
+              >
+                <Github className="size-4 shrink-0" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/monishat-baishnab666/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 border-2 rounded-md transition-[background] bg-slate-800/40 border-slate-800/50"
+              >
+                <Linkedin className="size-4 shrink-0" />
+              </a>
+              <a
+                href="https://wa.me/8801609927144"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 border-2 rounded-md transition-[background] bg-slate-800/40 border-slate-800/50"
+              >
+                <PhoneCall className="size-4 shrink-0" />
+              </a>
+              <a
+                href="https://drive.google.com/uc?export=download&id=1Sd6SPfHb0_P3RUroWm0ScvdVXtaIvVGZ"
+                download="Monishat Baishnab_Fullstack Developer"
+                className="px-4 py-1.5 border-2 rounded-md transition-[background] bg-slate-800/40 border-slate-800/50"
+              >
+                Resume
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>

@@ -50,10 +50,7 @@ const Navbar = () => {
       <div className=" bg-m-bg-light/5 flex items-center rounded-lg justify-between px-5 min-h-16 border border-m-bg-light/10 backdrop-blur-sm">
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => setOpen((prev) => !prev)}
-              className="outline-none p-2 text-white/60 block md:hidden"
-            >
+            <button onClick={() => setOpen((prev) => !prev)} className="outline-none p-2 text-white/60 block md:hidden">
               <Menu />
             </button>
 
@@ -61,13 +58,13 @@ const Navbar = () => {
               <div className="size-8 overflow-hidden">
                 <img src={logo} alt="Logo" className="size-8 object-contain" />
               </div>
-              <h1 className="text-xl text-white/80 font-medium">{"[M]"}</h1>
+              <h1 className="text-xl text-white font-medium">{"[M]"}</h1>
             </a>
             <div
               className={cn(
                 "absolute min-w-32 z-20 p-1 rounded-md space-y-0.5 left-5 transition-all duration-300",
                 open ? "top-full visible opacity-100" : "top-[90%] invisible opacity-0",
-                "bg-slate-800 border border-slate-800/50"
+                "bg-slate-800 border border-slate-800/50",
               )}
             >
               {navLinks.map(({ path, label }) => (
@@ -75,8 +72,8 @@ const Navbar = () => {
                   className={cn(
                     "transition-all flex items-center gap-2 w-full px-2 py-1 rounded-sm",
                     activeLink === path.slice(1)
-                      ? "text-white/80 bg-m-bg"
-                      : "text-white/50 hover:text-white/80 hover:bg-m-bg"
+                      ? "text-white bg-m-bg"
+                      : "text-white/50 hover:text-white hover:bg-m-bg",
                   )}
                   onClick={() => {
                     setActiveLink(path.slice(1));
@@ -97,9 +94,7 @@ const Navbar = () => {
                 <a
                   className={cn(
                     "transition-all",
-                    activeLink === link.path.slice(1)
-                      ? "text-white/80"
-                      : "text-white/50 hover:text-white/80"
+                    activeLink === link.path.slice(1) ? "text-white" : "text-white/50 hover:text-white",
                   )}
                   onClick={() => setActiveLink(link.path.slice(1))}
                   href={link.path}
@@ -114,7 +109,7 @@ const Navbar = () => {
           <a
             href="https://www.linkedin.com/in/monishat-baishnab666/"
             target="_blank"
-            className="text-white/60 hover:text-white/80 transition-all"
+            className="text-white/60 hover:text-white transition-all"
           >
             <Linkedin />
           </a>
@@ -122,7 +117,7 @@ const Navbar = () => {
           <a
             href="https://github.com/monishatBaishnab"
             target="_blank"
-            className="text-white/60 hover:text-white/80 transition-all"
+            className="text-white/60 hover:text-white transition-all"
           >
             <Github />
           </a>
