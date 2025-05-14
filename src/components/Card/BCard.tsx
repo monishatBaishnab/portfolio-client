@@ -13,7 +13,7 @@ const BCard = ({ blog }: { blog: TBlog }) => {
 
   return (
     <div
-      className="h-full border border-slate-800/50 p-4 rounded-2xl bg-slate-800/10 hover:bg-slate-800/20 transition-all shadow-lg space-y-4"
+      className="h-full border border-slate-800/50 p-4 rounded-2xl bg-slate-800/10 hover:bg-slate-800/20 transition-all space-y-4"
     >
       {/* Image */}
       <div className="w-full h-52 rounded-xl overflow-hidden">
